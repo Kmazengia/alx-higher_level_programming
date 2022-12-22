@@ -1,5 +1,5 @@
 #!/usr/bin/python
-quare = __import__('0-square').Square
+Square = __import__('0-square').Square
 
 
 
