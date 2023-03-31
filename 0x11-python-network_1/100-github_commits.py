@@ -5,8 +5,6 @@ in GitHub
 """
 from requests import get, auth
 import sys
-
-
 if __name__ == "__main__":
     try:
         repo = sys.argv[1]
@@ -16,6 +14,6 @@ if __name__ == "__main__":
         json_o = r.json()
         for i in range(0, 10):
             print("{}: {}".format(json_o[i].get('sha'), json_o[i].get('commit')
-                                  .get('author').get('name')))
+                .get('author').get('name')))
     except:
         pass
