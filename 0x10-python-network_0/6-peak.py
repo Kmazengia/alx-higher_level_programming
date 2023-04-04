@@ -1,25 +1,29 @@
 #!/usr/bin/python3
-""" Finds a peak inside a list """
 
 
 def find_peak(list_of_integers):
-    if list_of_integers == []:
+
+    if list_of_integers is None or len(list_of_integers) == 0:
         return None
 
-    length = len(list_of_integers)
-    mid = int(length / 2)
-    li = list_of_integers
+    if len(list_of_integers) == 1:
+        return list_of_integers[0]
 
-    if mid - 1 < 0 and mid + 1 >= length:
-        return li[mid]
-    elif mid - 1 < 0:
-        return li[mid] if li[mid] > li[mid + 1] else li[mid + 1]
-    elif mid + 1 >= length:
-        return li[mid] if li[mid] > li[mid - 1] else li[mid - 1]
+    mid_idx = int(len(list_of_integers) / 2)
 
-    if li[mid - 1] < li[mid] > li[mid + 1]:
-        return li[mid]
+    if mid_idx != len(list_of_integers) - 1:
+        if list_of_integers[mid_idx - 1] < list_of_integers[mid_idx] and\
+           list_of_integers[mid_idx + 1] < list_of_integers[mid_idx]:
+            return list_of_integers[mid_idx]
+    else:
+        if list_of_integers[mid_idx - 1] < list_of_integers[mid_idx]:
+            return list_of_integers[mid_idx]
+        else:
+            return list_of_integers[mid_idx - 1]
 
-    if li[mid + 1] > li[mid - 1]:
-        return find_peak(li[mid:])
-    return find_peak(li[:mid])
+    if list_of_integers[mid_idx - 1] > list_of_integers[mid_idx]:
+        a_list = list_of_integers[0:mid_idx]
+    else:
+        a_list = list_of_integers[mid_idx + 1:]
+
+    return find_peak(a_list)
